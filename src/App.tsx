@@ -4,14 +4,14 @@ import { peopleFromServer } from './data/people';
 import classNames from 'classnames';
 import { Person } from './types/Person';
 
-function debounce(callback: Function, delay: number) {
-  let timerId = 0;
+function debounce(callback: (value: string) => void, delay: number) {
+  let timerId: number;
 
-  return (...args: any) => {
-    window.clearTimeout(timerId);
+  return (value: string) => {
+    clearTimeout(timerId);
 
     timerId = window.setTimeout(() => {
-      callback(...args);
+      callback(value);
     }, delay);
   };
 }
